@@ -17,13 +17,7 @@
 
 package be.fablabmons.falamasuki;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.repository.CrudRepository;
 
-@SpringBootApplication
-public class FalamasukiApplication {
-
-  public static void main(String[] args) {
-    SpringApplication.run(FalamasukiApplication.class, args);
-  }
+public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 }

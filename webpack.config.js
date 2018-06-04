@@ -15,15 +15,28 @@
  *
  */
 
-package be.fablabmons.falamasuki;
+var path = require('path');
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class FalamasukiApplication {
-
-  public static void main(String[] args) {
-    SpringApplication.run(FalamasukiApplication.class, args);
+module.exports = {
+  entry: './src/main/js/app.js',
+  devtool: 'sourcemaps',
+  cache: true,
+  debug: true,
+  output: {
+    path: __dirname,
+    filename: './src/main/resources/static/built/bundle.js'
+  },
+  module: {
+    loaders: [
+      {
+        test: path.join(__dirname, '.'),
+        exclude: /(node_modules)/,
+        loader: 'babel',
+        query: {
+          cacheDirectory: true,
+          presets: ['es2015', 'react']
+        }
+      }
+    ]
   }
-}
+};

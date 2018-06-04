@@ -17,13 +17,21 @@
 
 package be.fablabmons.falamasuki;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
-@SpringBootApplication
-public class FalamasukiApplication {
+@Component
+public class DatabaseLoader implements CommandLineRunner {
+  private final EmployeeRepository repository;
 
-  public static void main(String[] args) {
-    SpringApplication.run(FalamasukiApplication.class, args);
+  @Autowired
+  public DatabaseLoader(EmployeeRepository repository) {
+    this.repository = repository;
+  }
+
+  @Override
+  public void run(String... args) {
+    repository.save(new Employee("Frodo", "Baggins", "ring bearer"));
   }
 }

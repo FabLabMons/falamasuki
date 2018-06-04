@@ -17,13 +17,27 @@
 
 package be.fablabmons.falamasuki;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import lombok.Data;
 
-@SpringBootApplication
-public class FalamasukiApplication {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-  public static void main(String[] args) {
-    SpringApplication.run(FalamasukiApplication.class, args);
+@Data
+@Entity
+public class Employee {
+  @Id
+  @GeneratedValue
+  private Long id;
+  private String firstName;
+  private String lastName;
+  private String description;
+
+  private Employee() { }
+
+  public Employee(String firstName, String lastName, String description) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.description = description;
   }
 }
